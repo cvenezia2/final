@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-sm-9"> 
+    <h1><%= @library[:name] %></h1>
+    <p><%= @library[:description] %></p>
+    <h3 class="mt-5">Checkouts</h3>
+    
+    <p class="mt-5"><a href="/libraries/<%= @library[:id] %>/checkouts/new" class="btn btn-primary">Check Out now</a></p>
+  </div>
+  <div class="col-sm-3">
+    <h3>Where?</h3>
+    <p><%= @library[:location] %></p>
+    <h3>Number of books checked out</h3>
+    <p><%= @count %></p>
+  </div>
+</div>
