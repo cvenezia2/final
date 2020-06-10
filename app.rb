@@ -16,7 +16,7 @@ after { puts; }                                                                 
 #######################################################################################
 
 libraries_table = DB.from(:libraries)
-checkouts_table = DB.from(:checkouts)
+reviews_table = DB.from(:reviews)
 
 get "/" do 
     @libraries = libraries_table.all
@@ -26,26 +26,27 @@ end
 
 get "/libraries/:id" do
     @library = libraries_table.where(:id => params["id"]).to_a[0]
-    @checkouts = checkouts_table.where(:library_id => params["id"]).to_a
-    @count = checkouts_table.where(:library_id => params["id"], :checkout => true).count
+    @reviews = reviews_table.where(:library_id => params["id"]).to_a
+    @count = reviews_table.where(:library_id => params["id"]).count
     puts @library.inspect
-    puts @checkouts.inspect
+    puts @reviews.inspect
     view "library"
 end
 
-get "/libraries/:id/checkouts/new" do
+get "/libraries/:id/reviews/new" do
     @library = libraries_table.where(:id => params["id"]).to_a[0]
     puts @library.inspect
-    view "new_checkout"
+    view "new_review"
 end
 
-get "/libraries/:id/checkouts/create" do
+get "/libraries/:id/reviews/create" do
 # Do stuff
 puts params.inspect
-checkouts_table.insert(:library_id => params["id"],
-                    :checkout => params["checkout"],
+reviews_table.insert(:library_id => params["id"],
+                    :review => params["review"],
                     :name => params["name"],
                     :email => params["email"],
+                    :booktitle => params["book title"],
                     :comments => params["comments"])
-view "create_checkout"
+view "create_review"
 end

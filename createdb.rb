@@ -11,12 +11,13 @@ DB.create_table! :libraries do
   String :description, text: true
   String :location
 end
-DB.create_table! :checkouts do
+DB.create_table! :reviews do
   primary_key :id
   foreign_key :library_id
-  Boolean :checkout
+  Boolean :review
   String :name
   String :email
+  String :booktitle
   String :comments, text: true
 end
 
