@@ -3,7 +3,19 @@
     <h1><%= @library[:name] %></h1>
     <p><%= @library[:description] %></p>
     <h3 class="mt-5">Checkouts</h3>
-    
+    <% for checkout in @checkouts %>
+      <div class="media mt-3">
+        <% if checkout[:checkout] %>
+          <i class="fas fa-thumbs-up fa-3x"></i>
+        <% else %>
+          <i class="fas fa-thumbs-down fa-3x"></i>
+        <% end %>
+        <div class="media-body ml-3">
+          <h5 class="mt-0"><%= checkout[:name] %></h5>
+          <%= checkout[:comments] %>
+        </div>
+      </div>
+    <% end %>
     <p class="mt-5"><a href="/libraries/<%= @library[:id] %>/checkouts/new" class="btn btn-primary">Check Out now</a></p>
   </div>
   <div class="col-sm-3">

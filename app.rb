@@ -26,11 +26,26 @@ end
 
 get "/libraries/:id" do
     @library = libraries_table.where(:id => params["id"]).to_a[0]
+    @checkouts = checkouts_table.where(:library_id => params["id"]).to_a
+    @count = checkouts_table.where(:library_id => params["id"], :checkout => true).count
     puts @library.inspect
+    puts @checkouts.inspect
     view "library"
 end
 
 get "/libraries/:id/checkouts/new" do
-    @library = libraries_table.where(:id => params['id']).to_a[0]
+    @library = libraries_table.where(:id => params["id"]).to_a[0]
+    puts @library.inspect
     view "new_checkout"
+end
+
+get "/libraries/:id/checkouts/create" do
+# Do stuff
+puts params.inspect
+checkouts_table.insert(:library_id => params["id"],
+                    :checkout => params["checkout"],
+                    :name => params["name"],
+                    :email => params["email"],
+                    :comments => params["comments"])
+view "create_checkout"
 end
