@@ -32,8 +32,8 @@ libraries_table = DB.from(:libraries)
 
 libraries_table.insert(name: "Ocee Library", 
                     description: "Fulton County Library in Johns Creek",
-                    location: "5090 Abbotts Bridge Rd")
+                    location: "5090 Abbotts Bridge Rd, Johns Creek, GA 30005")
 
 libraries_table.insert(name: "Spruill Oaks", 
                     description: "Fulton County Library in Alpharetta",
-                    location: "9560 Spruill Rd")
+                    location: "9560 Spruill Rd, Johns Creek, GA 30022")

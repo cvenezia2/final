@@ -18,10 +18,18 @@
             </div>
         <% end %>
             <p class="mt-5"><a href="/libraries/<%= @library[:id] %>/reviews/new" class="btn btn-primary">Submit Your Review</a></p>
-  </div>
+  </div>  
   <div class="col-sm-3">
-    <h3>Where?</h3>
-    <p><%= @library[:location] %></p>
+        <h4>Location</h4>
+        <p><%= @library[:location] %></p>
+                
+        <iframe
+            width="300"
+            height="250"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCWZDFU5OiAx5nYlQ0G7cP3D9I6By6weTY&q=<%= @lat_long %>&zoom=12" allowfullscreen>
+        </iframe>
+    
     <h3>Number of books reviewed</h3>
     <p><%= @count %></p>
   </div>

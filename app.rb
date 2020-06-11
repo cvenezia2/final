@@ -35,6 +35,11 @@ get "/libraries/:id" do
     @library = libraries_table.where(:id => params["id"]).to_a[0]
     @reviews = reviews_table.where(:library_id => params["id"]).to_a
     @count = reviews_table.where(:library_id => params["id"]).count
+    @address = @library[:location]
+    results = Geocoder.search(@address)
+    @lat_long = results.first.coordinates.join(",")
+    puts @library.inspect
+    puts params.inspect
     view "library"
 end
 
